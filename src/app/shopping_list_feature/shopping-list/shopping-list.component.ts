@@ -48,4 +48,8 @@ ingredients: Ingredient[]= [
   new Ingredient('Onion'          , 74 ),
   new Ingredient('Paprica'        , 14 ),
 ];
+
+AddNewIngredient(newIngredient:Ingredient){
+  this.ingredients.push(newIngredient);
+}
 }
