@@ -1,0 +1,11 @@
+.selectedrecipe{
+    background-color: rgb(221 229 218);
+}
+
+.recipe:hover{
+    background-color: rgb(241, 247, 239) !important;
+}
+
+.recipe:focus{
+    background-color:  rgb(221 229 218) !important;
+}

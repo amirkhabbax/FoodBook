@@ -1,0 +1,10 @@
+<app-header (featureClicked)="OnFeatureClicked($event)"></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <app-recipes  *ngIf="visibleComponent==='Recipes'"></app-recipes>
+
+            <app-shopping-list *ngIf="visibleComponent==='ShoppingList'"></app-shopping-list>
+        </div>
+    </div>
+</div>
