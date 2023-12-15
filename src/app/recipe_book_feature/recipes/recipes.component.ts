@@ -1,6 +1,4 @@
-import { Component, ElementRef, ViewChildren } from '@angular/core';
-import { Recipe } from './model/recipe.model';
-
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
@@ -8,9 +6,5 @@ import { Recipe } from './model/recipe.model';
 })
 export class RecipesComponent {
 
-  selectedRecipe!:Recipe;
 
-  OnRecipeSelected(recipe:Recipe){
-    this.selectedRecipe = recipe;
-  }
 }
