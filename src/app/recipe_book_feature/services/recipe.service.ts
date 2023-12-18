@@ -19,13 +19,13 @@ export class RecipeService {
   } 
 
   private recipes: Recipe[] = [
-    new Recipe('Middle Eastern Falafel', 'Learn how to make crispy, delicious Middle Eastern falafel', 'https://toriavey.com/images/2011/01/TOA109_18-1-500x500.jpeg',[
+    new Recipe('Middle Eastern Falafel', 'Learn how to make crispy, delicious Middle Eastern falafel', 'https://www.nonguiltypleasures.com/wp-content/uploads/2023/02/crispy-middle-eastern-falafel-square.jpg',[
       new Ingredient('Pea'   ,200),
       new Ingredient('Oil'   ,1  ),
       new Ingredient('Pepper',1  ),
       new Ingredient('Salt'  ,1  ),
     ]),
-    new Recipe('Special Italian Spagetti', 'Learn how to make delicious Italian spagetti', 'https://www.foodandwine.com/thmb/YlgBj_G9a_psYSzA3gfU6gx9A3w=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/bucatini-with-mushroom-ragu-dandelion-greens-and-tarragon-FT-RECIPE0421-3a5f0d29f7264f5e9952d4a3a51f5f58.jpg',
+    new Recipe('Special Italian Spaghetti', 'Learn how to make delicious Italian Spaghetti', 'https://assets.bonappetit.com/photos/59bbfb9f6375992e505c1bd3/1:1/w_1920,c_limit/classic-spaghetti-and-meatballs.jpg',
     [
       new Ingredient('Spagetti',1),
       new Ingredient('Oil'     ,1),
