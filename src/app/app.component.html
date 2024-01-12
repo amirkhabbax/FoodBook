@@ -1,10 +1,11 @@
-<app-header (featureClicked)="OnFeatureClicked($event)"></app-header>
-<div class="container">
+<app-header></app-header>
+ <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <app-recipes  *ngIf="visibleComponent==='Recipes'"></app-recipes>
+            <!-- <app-recipes  *ngIf="visibleComponent==='Recipes'"></app-recipes>
 
-            <app-shopping-list *ngIf="visibleComponent==='ShoppingList'"></app-shopping-list>
+            <app-shopping-list *ngIf="visibleComponent==='ShoppingList'"></app-shopping-list> -->
+            <router-outlet></router-outlet>
         </div>
     </div>
-</div>
+</div> 
