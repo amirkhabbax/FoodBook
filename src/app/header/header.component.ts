@@ -1,5 +1,6 @@
 import { RecipeService } from 'src/app/recipe_book_feature/services/recipe.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,16 +8,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  // @Output() featureClicked = new EventEmitter<string>();
-  recipeName: string = '';
 
-  constructor(private recipeService: RecipeService) {
-    this.recipeName = this.recipeService.selectedRecipe$.value.name;
+  recipeId: number = 0;
+
+  constructor(private recipeService: RecipeService , private router: Router) {
+    this.recipeId = this.recipeService.getRecipes().indexOf(this.recipeService.selectedRecipe$.value);
   }
-  
-
-  // OnSelect() {
-  //   //   this.featureClicked.emit(feature);
-  // }
 
 }

@@ -1,8 +1,7 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Recipe } from '../recipes/model/recipe.model';
 import { BehaviorSubject } from 'rxjs';
 import { Ingredient } from 'src/app/shared/model/Ingredient.model';
-import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

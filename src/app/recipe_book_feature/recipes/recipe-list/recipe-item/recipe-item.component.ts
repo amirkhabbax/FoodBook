@@ -25,6 +25,6 @@ export class RecipeItemComponent implements OnInit  {
 
   itemSelected() {
     this.recipeService.selectedRecipe$ = this.recipe;
-    this.router.navigate(['/recipes', this.recipe.name]);
+    this.router.navigate(['/recipes', this.recipeService.getRecipes().indexOf(this.recipe)]);
   }
 }

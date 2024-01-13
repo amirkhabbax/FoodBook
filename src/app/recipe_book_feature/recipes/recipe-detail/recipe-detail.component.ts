@@ -2,7 +2,7 @@ import { ShoppingListService } from './../../../shopping_list_feature/services/s
 import { RecipeService } from './../../services/recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../model/recipe.model';
-import { Ingredient } from 'src/app/shared/model/Ingredient.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -13,7 +13,7 @@ export class RecipeDetailComponent implements OnInit {
 
   loadedRecipe !: Recipe ;
   
-  constructor(private recipeService:RecipeService , private shoppingListService: ShoppingListService) {}
+  constructor(private recipeService:RecipeService , private shoppingListService: ShoppingListService , private router: Router) {}
 
   ngOnInit(): void {
     this.recipeService.selectedRecipe$.subscribe((recipe) => {
@@ -23,5 +23,6 @@ export class RecipeDetailComponent implements OnInit {
 
   ToShoppingList() {
     this.loadedRecipe.ingredients.forEach((Ingredient) => { this.shoppingListService.AddNewIngredient(Ingredient) });
+    this.router.navigate(['/shoppingList']);
   }
 }
