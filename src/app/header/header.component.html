@@ -2,7 +2,7 @@
     <div class="container-fluid" style="background-color: rgb(226 233 223);">
 
         <div class="navbar-header" >
-            <a class="navbar-brand" style="color: green; cursor: pointer !important;" [routerLink]="['/recipes',this.recipeId]">
+            <a class="navbar-brand" style="color: green; cursor: pointer !important;" style="cursor: pointer;" (click)="RecipeLinkClicked()">
                 <span>F</span>
                 <Span style="margin-right: 1px; color:white; background-color: orange;">o</Span>
                 <Span style="margin-right: 1px; color:white; background-color: orangered; border: 1px solid transparent;">o</Span>
@@ -16,7 +16,7 @@
 
         <div class="collapse navbar-collapse"> 
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a [routerLink]="['/recipes',this.recipeId]">Recipes</a></li>
+                <li style="cursor: pointer;" [class.active]="isLinkActive('/recipes')"><a (click)="RecipeLinkClicked()">Recipes</a></li>
                 <li routerLinkActive="active"><a routerLink="/shoppingList">Shopping List</a></li>
             </ul>
 

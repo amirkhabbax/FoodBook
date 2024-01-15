@@ -1,11 +1,24 @@
-.selectedrecipe{
+.active,
+.active:focus,
+.active:hover {
     background-color: rgb(221 229 218);
+    color: black;
+    border: thin solid olivedrab;
 }
 
-.recipe:hover{
+P.list-group-item-text{
+    color: rgba(255, 166, 0, 0.952) !important;
+}
+
+
+.active>.pull-left>P.list-group-item-text{
+    color: rgba(255, 68, 0, 0.884) !important;
+}
+
+.recipe:hover {
     background-color: rgb(241, 247, 239) !important;
 }
 
-.recipe:focus{
-    background-color:  rgb(221 229 218) !important;
+.recipe:focus {
+    background-color: rgb(221 229 218) !important;
 }
