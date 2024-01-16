@@ -1,5 +1,5 @@
 <!-- <a  href="#" class="list-group-item clearfix" (click)="itemSelected()" [ngStyle]="{'background-color':(selectedRecipe===recipe) ?'rgb(221 229 218)':'inherit'}"> -->
-<a  style="cursor: pointer;" class="list-group-item clearfix recipe" [routerLink]="[this.index]" routerLinkActive="active" >
+<a  style="cursor: pointer;" class="list-group-item clearfix recipe" [routerLink]="[index]" routerLinkActive="active" (click)="itemSelected()" >
     <div class="pull-left">
         <h4 class="list-group-item-heading">{{recipe.name}}</h4>
         <p class="list-group-item-text">{{recipe.description}}</p>

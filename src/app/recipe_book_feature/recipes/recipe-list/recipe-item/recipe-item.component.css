@@ -7,12 +7,12 @@
 }
 
 P.list-group-item-text{
-    color: rgba(255, 166, 0, 0.952) !important;
+    color: rgba(51, 138, 17, 0.658) !important;
 }
 
 
 .active>.pull-left>P.list-group-item-text{
-    color: rgba(255, 68, 0, 0.884) !important;
+    color: rgba(255, 153, 0, 0.884) !important;
 }
 
 .recipe:hover {

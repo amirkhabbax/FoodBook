@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  // visibleComponent:string= 'Recipes';
-
-  // OnFeatureClicked(feature: string) {
-  //   this.visibleComponent = feature;
-  // }
-
 }

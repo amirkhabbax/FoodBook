@@ -7,11 +7,13 @@ import { ShoppingListComponent } from '../shopping_list_feature/shopping-list/sh
 import { ErrorPageComponent } from '../error-page/error-page.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/recipes',pathMatch: 'full'  },
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   {
-    path: 'recipes', component: RecipesComponent, children: [
-      { path: ':id', component: RecipeDetailComponent },
-      { path: ':id/edit', component: RecipeEditComponent }
+    path: 'recipes'     , component: RecipesComponent, children:
+     [
+      { path: 'new'     , component: RecipeEditComponent   },
+      { path: ':id'     , component: RecipeDetailComponent },
+      { path: ':id/edit', component: RecipeEditComponent   },
     ]
   },
   { path: 'shoppingList', component: ShoppingListComponent },
