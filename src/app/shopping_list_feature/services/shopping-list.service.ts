@@ -1,13 +1,13 @@
 import { Ingredient } from './../../shared/model/Ingredient.model';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingListService {
 
-  private ingredients: Ingredient[]= [
+  private ingredients: Ingredient[] = [
     // new Ingredient('Potatoes'       , 5  ),
     // new Ingredient('Tomatoes'       , 50 ),
     // new Ingredient('Shrimp'         , 10 ),
@@ -50,12 +50,32 @@ export class ShoppingListService {
   ];
 
   private Ingredient$ = new BehaviorSubject<Ingredient[]>(this.ingredients);
-
   get ingredient$(): BehaviorSubject<Ingredient[]> {
     return this.Ingredient$;
   }
 
-  AddNewIngredient(newIngredient:Ingredient){
+  private StartedEditing$ = new Subject<number>();
+  get startedEditing$(): Subject<number> {
+    return this.StartedEditing$;
+  }
+
+  deleteIngredient(index:number){
+    this.ingredients.splice(index,1);
+  }
+
+  clearIngredients(){
+    this.ingredients.splice(0,this.ingredients.length);
+  }
+
+  getIngredient(index: number): Ingredient {
+    return this.ingredients[index];
+  }
+
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
+  }
+
+  AddNewIngredient(newIngredient: Ingredient) {
     let foundIndex = this.ingredients.findIndex((ingredient) => ingredient.name === newIngredient.name);
     if (foundIndex == -1) this.ingredients.push(newIngredient);
     else {
