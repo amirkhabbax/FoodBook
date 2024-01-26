@@ -19,8 +19,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   constructor(private shoppingListService: ShoppingListService) {
   }
 
-  AddNewIngredient(formValue: { name: string, amount: number }) {
-    this.shoppingListService.AddNewIngredient(new Ingredient(formValue.name, formValue.amount));
+  AddNewIngredient(ingredient: Ingredient) {
+    this.shoppingListService.AddNewIngredient(ingredient);
     this.resetForm();
   }
 

@@ -13,7 +13,7 @@ import { RecipeDetailComponent } from './recipe_book_feature/recipes/recipe-deta
 import { DropdownDirectiveDirective } from './shared/dropdown.directive.directive';
 import { RecipeEditComponent } from './recipe_book_feature/recipes/recipe-edit/recipe-edit.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

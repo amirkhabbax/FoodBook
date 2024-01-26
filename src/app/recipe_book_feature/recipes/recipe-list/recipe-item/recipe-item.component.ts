@@ -1,7 +1,6 @@
 import { RecipeService } from 'src/app/recipe_book_feature/services/recipe.service';
 import { Recipe } from './../../model/recipe.model';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -14,15 +13,14 @@ export class RecipeItemComponent implements OnInit , OnDestroy {
   selectedRecipe !: Recipe;
   index !: number;
   private _unsubscribe = new Subject<any>();
-  constructor(private recipeService:  RecipeService, private router: Router) {
+  constructor(private recipeService:  RecipeService) {
   }
 
 
   ngOnInit(): void {
-    this.index = this.recipeService.getRecipes().indexOf(this.recipe);
+    this.index = this.recipeService.recipes$.value.indexOf(this.recipe);
     this.recipeService.selectedRecipe$.pipe(takeUntil( this._unsubscribe)).subscribe((recipe) => {
       this.selectedRecipe = recipe;
-     // this.router.navigate(['/recipes', this.recipeService.getRecipes().indexOf(this.recipe)]);
     });
   }
 

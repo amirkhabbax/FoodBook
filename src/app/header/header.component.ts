@@ -16,7 +16,7 @@ export class HeaderComponent {
   }
 
   RecipeLinkClicked() {
-    this.recipeId = this.recipeService.getRecipes().indexOf(this.recipeService.selectedRecipe$.value);
+    this.recipeId = this.recipeService.recipes$.value.indexOf(this.recipeService.selectedRecipe$.value);
     this.router.navigate(['recipes', this.recipeId]);
   }
 
