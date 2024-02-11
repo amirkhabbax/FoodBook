@@ -1,6 +1,7 @@
+import { DataStorageService } from './../shared/services/data-storage.service';
 import { RecipeService } from 'src/app/recipe_book_feature/services/recipe.service';
 import { Component } from '@angular/core';
-import { IsActiveMatchOptions, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent {
 
   recipeId: number = 0;
 
-  constructor(private recipeService: RecipeService, private router: Router) {
+  constructor(private recipeService: RecipeService, private router: Router , private dataStorageService:DataStorageService) {
 
   }
 
@@ -22,5 +23,14 @@ export class HeaderComponent {
 
   isLinkActive(url: string): boolean {
     return this.router.url.includes(url);
+  }
+
+  OnSaveData(){
+    this.dataStorageService.storeRecipes();
+  }
+
+  OnFetchData(){
+    this.dataStorageService.fetchRecipes().subscribe();
+
   }
 }

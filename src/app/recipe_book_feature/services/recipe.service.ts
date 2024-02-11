@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Recipe } from '../recipes/model/recipe.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Ingredient } from 'src/app/shared/model/Ingredient.model';
+import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -63,9 +65,16 @@ export class RecipeService {
 
   private Recipes$ = new BehaviorSubject<Recipe[]>(this.recipes);
 
+  set recipes$(newRecipe: Recipe[]) {
+    this.recipes = newRecipe;
+    this.Recipes$.next(newRecipe);
+  }
+
+
   get recipes$(): BehaviorSubject<Recipe[]> {
     return this.Recipes$;
   }
+
   getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
@@ -82,8 +91,25 @@ export class RecipeService {
     this.recipes[index] = newrecipe;
   }
 
-  deleteRecipe(index:number){
-    this.recipes.splice(index,1);
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
   }
 
+
+
 }
+
+
+export const RecipesResolver: ResolveFn<Recipe[]> = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot,
+  dataStorageService: DataStorageService = inject(DataStorageService),
+  recipesService: RecipeService = inject(RecipeService)
+): Recipe[] | Observable<Recipe[]> | Promise<Recipe[]> => {
+    const recipes = recipesService.getRecipes();
+    if (recipes.length === 0) {
+      return dataStorageService.fetchRecipes();
+    } else {
+      return recipes;
+    }
+};

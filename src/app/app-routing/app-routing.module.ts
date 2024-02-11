@@ -5,6 +5,7 @@ import { RecipeDetailComponent } from '../recipe_book_feature/recipes/recipe-det
 import { RecipeEditComponent } from '../recipe_book_feature/recipes/recipe-edit/recipe-edit.component';
 import { ShoppingListComponent } from '../shopping_list_feature/shopping-list/shopping-list.component';
 import { ErrorPageComponent } from '../error-page/error-page.component';
+import { RecipesResolver } from '../recipe_book_feature/services/recipe.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -12,8 +13,8 @@ const appRoutes: Routes = [
     path: 'recipes'     , component: RecipesComponent, children:
      [
       { path: 'new'     , component: RecipeEditComponent   },
-      { path: ':id'     , component: RecipeDetailComponent },
-      { path: ':id/edit', component: RecipeEditComponent   },
+      { path: ':id'     , component: RecipeDetailComponent , resolve:[RecipesResolver] },
+      { path: ':id/edit', component: RecipeEditComponent  , resolve:[RecipesResolver] },
     ]
   },
   { path: 'shoppingList', component: ShoppingListComponent },

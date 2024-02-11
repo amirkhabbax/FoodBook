@@ -14,7 +14,7 @@ import { DropdownDirectiveDirective } from './shared/dropdown.directive.directiv
 import { RecipeEditComponent } from './recipe_book_feature/recipes/recipe-edit/recipe-edit.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
