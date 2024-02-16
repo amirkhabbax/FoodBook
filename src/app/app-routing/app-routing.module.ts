@@ -6,6 +6,7 @@ import { RecipeEditComponent } from '../recipe_book_feature/recipes/recipe-edit/
 import { ShoppingListComponent } from '../shopping_list_feature/shopping-list/shopping-list.component';
 import { ErrorPageComponent } from '../error-page/error-page.component';
 import { RecipesResolver } from '../recipe_book_feature/services/recipe.service';
+import { AuthComponent } from '../auth/auth/auth.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     ]
   },
   { path: 'shoppingList', component: ShoppingListComponent },
+  { path: 'auth' , component: AuthComponent},
   { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found!' } },
   { path: '**', redirectTo: '/not-found' }
 ];

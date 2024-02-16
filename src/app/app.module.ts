@@ -14,7 +14,8 @@ import { DropdownDirectiveDirective } from './shared/dropdown.directive.directiv
 import { RecipeEditComponent } from './recipe_book_feature/recipes/recipe-edit/recipe-edit.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth/auth.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http'
     RecipeDetailComponent,
     DropdownDirectiveDirective,
     RecipeEditComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
