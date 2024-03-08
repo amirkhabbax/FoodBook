@@ -15,7 +15,8 @@ import { RecipeEditComponent } from './recipe_book_feature/recipes/recipe-edit/r
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthComponent } from './auth/auth/auth.component'
+import { AuthComponent } from './auth/auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner/loading-spinner.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { AuthComponent } from './auth/auth/auth.component'
     DropdownDirectiveDirective,
     RecipeEditComponent,
     ErrorPageComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
