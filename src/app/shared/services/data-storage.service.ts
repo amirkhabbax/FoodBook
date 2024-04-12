@@ -1,7 +1,7 @@
-import { Ingredient } from './../model/Ingredient.model';
+import { AuthService } from './../../auth/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs';
+import { exhaustMap, map, take, tap } from 'rxjs';
 import { Recipe } from 'src/app/recipe_book_feature/recipes/model/recipe.model';
 import { RecipeService } from 'src/app/recipe_book_feature/services/recipe.service';
 
@@ -10,7 +10,7 @@ import { RecipeService } from 'src/app/recipe_book_feature/services/recipe.servi
 })
 export class DataStorageService {
 
-  constructor(private httpCLient: HttpClient, private recipeService: RecipeService) { }
+  constructor(private httpCLient: HttpClient, private recipeService: RecipeService, private authservice: AuthService) { }
 
   storeRecipes() {
     const recipes = this.recipeService.getRecipes();
@@ -21,16 +21,15 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    return this.httpCLient.get<Recipe[]>("https://maximilliantraining-default-rtdb.firebaseio.com/recipes.json")
-      .pipe(map(recipes => {
+
+    return this.httpCLient.get<Recipe[]>("https://maximilliantraining-default-rtdb.firebaseio.com/recipes.json").pipe(
+      map(recipes => {
         return recipes.map(recipe => { return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [] } });
       })
-        ,
-        tap(recipes => {
-          //   console.log(response);
-          this.recipeService.recipes$ = recipes;
-        }))
-
-      ;
+      ,
+      tap(recipes => {
+        //   console.log(response);
+        this.recipeService.recipes$ = recipes;
+      }));
   }
 }

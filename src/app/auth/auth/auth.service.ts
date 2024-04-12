@@ -18,10 +18,9 @@ export interface AuthResponsedata {
 })
 export class AuthService {
 
-  userSubject = new Subject<User>();
+  userSubject = new BehaviorSubject<User | null>(null);
   isAnyUserLoggedIN = new BehaviorSubject<boolean>(false);
-
-
+  private tokenExpirationTimer: any;
   constructor(private httpClient: HttpClient) { }
 
   signUp(email: string, password: string) {
@@ -45,8 +44,42 @@ export class AuthService {
     }));
   }
 
-  Logout(){
+  autoLogin() {
+    const userData = localStorage.getItem('userData');
+    if (!userData)
+      return;
+
+    const userDataParsed: { email: string; id: string; _token: string; _tokenExpirationDate: Date; } = JSON.parse(userData ? userData : '');
+    const loadedUser = new User(userDataParsed.email, userDataParsed.id, userDataParsed._token, new Date(userDataParsed._tokenExpirationDate));
+
+    if (loadedUser.token) {
+      this.userSubject.next(loadedUser);
+      this.isAnyUserLoggedIN.next(true);
+      const expirationDate = new Date(userDataParsed._tokenExpirationDate).getTime() - new Date().getTime();
+      this.autoLogOut(expirationDate);
+    }
+  }
+
+  autoLogOut(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.Logout();
+    }, expirationDuration);
+
+    //whats wrong with approach used below???? i dont see any problem.
+    // if (!this.userSubject.value?.token) 
+    //   this.Logout();
+
+  }
+
+  Logout() {
+    this.userSubject.next(null);
     this.isAnyUserLoggedIN.next(false);
+    localStorage.removeItem('userData');
+
+    if (this.tokenExpirationTimer)
+      clearTimeout(this.tokenExpirationTimer);
+
+    this.tokenExpirationTimer = null;
   }
 
   private handleAuthentication(email: string, localId: string, idToken: string, expiresIn: string) {
@@ -54,6 +87,8 @@ export class AuthService {
     const user = new User(email, localId, idToken, expirationDate);
     this.userSubject.next(user);
     this.isAnyUserLoggedIN.next(true);
+    this.autoLogOut(+expiresIn * 1000);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 
   private handleError(errorRes: HttpErrorResponse) {
