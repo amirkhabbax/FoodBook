@@ -10,13 +10,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './auth/auth/auth-interceptor.service';
 import { RecipesModule } from './recipe_book_feature/recipes.module';
 import { StoreModule } from '@ngrx/store';
+import { ShoppingListReducer } from './shopping_list_feature/Store/Reducers/shopping-list.reducer';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    ErrorPageComponent
-  ],
+  declarations: [AppComponent, HeaderComponent, ErrorPageComponent],
 
   imports: [
     BrowserModule,
@@ -24,9 +21,15 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     AppRoutingModule,
     RecipesModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({ ShoppingList: ShoppingListReducer }),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
